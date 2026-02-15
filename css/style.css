@@ -1,0 +1,234 @@
+/* Definición de variables globales para colores y tiempos de transición */
+:root {
+    --azul-imperial: #002366;
+    --azul-profundo-fondo: #000a1a;
+    --azul-claro-luz: #004e92;
+    --azul-cristal: #e1f5fe;
+    --oro-rico: #d4af37;
+    --oro-brillante: #fce2a3;
+    --blanco-seda: #fdfdfd;
+    --transicion-lenta: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Configuración general de la página: centrado del contenido y fondo base */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    /* --- NUEVO FONDO CON PROFUNDIDAD --- */
+    background-color: var(--azul-profundo-fondo);
+    /* Capas de gradientes para dar efecto de "foco" central */
+    background-image: 
+        radial-gradient(circle at 50% 40%, rgba(0, 78, 146, 0.4) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+    overflow-x: hidden;
+}
+
+/* --- NUEVO FONDO ANIMADO BOKEH --- */
+/* Capa fija que genera un patrón de estrellas usando pequeños gradientes radiales */
+.stars-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+    background-image: radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                      radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                      radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    opacity: 0.5;
+}
+
+/* Contenedor para las luces desenfocadas (bokeh) */
+.bokeh-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; overflow: hidden;
+}
+
+/* Estilo base para cada círculo de luz bokeh */
+.bokeh-light {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100, 181, 246, 0.3) 0%, rgba(0, 35, 102, 0) 70%);
+    animation: floatBokeh 25s infinite linear;
+    opacity: 0;
+}
+
+/* Tamaños y posiciones variadas para las luces para crear aleatoriedad */
+.s-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-duration: 35s; animation-delay: 0s; }
+.s-2 { width: 200px; height: 200px; top: 60%; left: 80%; animation-duration: 28s; animation-delay: -5s; background: radial-gradient(circle, rgba(252, 226, 163, 0.15) 0%, transparent 70%); /* Luz dorada sutil */ }
+.s-3 { width: 400px; height: 400px; top: 40%; left: 40%; animation-duration: 40s; animation-delay: -10s; }
+.s-4 { width: 150px; height: 150px; top: 80%; left: 20%; animation-duration: 30s; animation-delay: -15s; }
+.s-5 { width: 250px; height: 250px; top: -10%; left: 60%; animation-duration: 32s; animation-delay: -8s; }
+
+/* Animación que hace que las luces suban y cambien de tamaño gradualmente */
+@keyframes floatBokeh {
+    0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+}
+
+/* --- Sello Azul y Oro (Sin Cambios) --- */
+/* Contenedor central del sello que espera el click del usuario */
+.scroll-seal-container {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; cursor: pointer; transition: all 0.8s ease;
+}
+
+/* Estilo del sello de cera circular con gradiente y borde dorado */
+.wax-seal {
+    width: 130px; height: 130px;
+    background: radial-gradient(circle, var(--azul-imperial), #001033);
+    border-radius: 50%; border: 4px solid var(--oro-rico);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.4);
+    animation: glow 3s infinite alternate;
+}
+
+/* Estilo de la inicial dentro del sello */
+.seal-inner {
+    font-family: 'Cinzel Decorative'; font-size: 2.5rem; color: var(--oro-rico);
+    text-shadow: 0 0 10px rgba(252, 226, 163, 0.5);
+}
+
+/* Texto pequeño "ABRIR" debajo de la inicial */
+.seal-text { color: white; font-weight: bold; font-size: 0.7rem; letter-spacing: 2px; margin: 0; }
+
+/* Animación de pulso para que el sello brille y llame la atención */
+@keyframes glow { 
+    from { transform: scale(1); box-shadow: 0 0 20px var(--oro-rico); }
+    to { transform: scale(1.05); box-shadow: 0 0 40px var(--oro-brillante); }
+}
+
+/* --- El Pergamino (Sin Cambios mayores) --- */
+/* Cuerpo de la invitación que se despliega; inicia oculto (max-height: 0) */
+.parchment {
+    background: linear-gradient(135deg, var(--blanco-seda) 0%, var(--azul-cristal) 100%);
+    padding: 0 40px; border-radius: 10px;
+    border-left: 10px solid var(--azul-imperial);
+    border-right: 10px solid var(--azul-imperial);
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: var(--transicion-lenta);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    text-align: center; position: relative;
+}
+
+/* Estado cuando la invitación se abre: expande el contenido y lo hace visible */
+.invitation-wrapper.open .parchment {
+    max-height: 2500px; opacity: 1; padding: 60px 40px;
+}
+
+/* Cuando se abre, el sello desaparece suavemente */
+.invitation-wrapper.open .scroll-seal-container {
+    opacity: 0; transform: translate(-50%, -50%) scale(0.5); pointer-events: none;
+}
+
+/* --- Tipografía (Sin Cambios) --- */
+/* Nombre de la festejada con degradado dorado y sombra */
+.princess-name {
+    font-family: 'Great Vibes', cursive; font-size: 3.8rem;
+    background: linear-gradient(to right, var(--azul-imperial), var(--oro-rico), var(--azul-imperial));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+    /* Añadí un filtro para que resalte más sobre el pergamino claro */
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+}
+
+/* Estilo para los nombres de los padres */
+.parents { 
+    font-family: 'Cinzel Decorative'; 
+    font-weight: 700; 
+    color: var(--azul-imperial); margin-bottom: 15px; 
+}
+
+/* Títulos de sección con línea inferior dorada */
+h2 { 
+    font-family: 'Cinzel Decorative'; 
+    color: var(--oro-rico); 
+    border-bottom: 1px solid var(--oro-rico); 
+    display: inline-block; 
+    font-size: 1.2rem; 
+}
+
+/* Color de texto para mensajes secundarios */
+.intro-text, .celebration-msg, .rsvp-section p, .formal { color: #444; }
+
+/* Estilo mejorado para el nombre de la princesa con animación de flotación */
+.princess-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    background: linear-gradient(to right, #b8860b, #fce2a3, #b8860b);
+    
+    /* --- CORRECCIÓN PARA LAS LÍNEAS AMARILLAS --- */
+    -webkit-background-clip: text; /* Para Chrome y Safari */
+    background-clip: text;         /* Versión estándar que quita el aviso del editor */
+    -webkit-text-fill-color: transparent; 
+    
+    display: block; /* Ayuda a que el gradiente y la animación se apliquen correctamente */
+    margin: 15px 0;
+    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.2));
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* --- ESTO ES VITAL: Si no agregas esto, el nombre no se moverá --- */
+/* Animación de movimiento vertical suave para el nombre */
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- Botones de Cristal y Oro (Sin Cambios) --- */
+/* Botones con efecto de desenfoque de fondo (backdrop-filter) y borde dorado */
+.btn-glass-gold {
+    text-decoration: none; display: inline-block; padding: 12px 30px; margin-top: 15px;
+    background: rgba(0, 35, 102, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--oro-rico);
+    border-radius: 50px; color: var(--azul-imperial);
+    font-weight: 600; transition: 0.4s;
+    position: relative; overflow: hidden;
+}
+
+/* Efecto de destello que pasa sobre el botón al pasar el mouse */
+.btn-glass-gold::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(252, 226, 163, 0.4), transparent);
+    transition: 0.6s;
+}
+
+/* Cambio de colores al pasar el mouse por el botón */
+.btn-glass-gold:hover {
+    background: var(--azul-imperial); color: var(--oro-brillante);
+    box-shadow: 0 5px 15px rgba(0, 35, 102, 0.3);
+}
+
+.btn-glass-gold:hover::before { left: 100%; }
+
+/* Estilo específico para el botón de confirmar (fondo azul constante) */
+.confirm { background: var(--azul-imperial); color: var(--oro-brillante); }
+
+/* --- Detalles (Sin Cambios) --- */
+/* Líneas decorativas doradas con degradado hacia los lados */
+.gold-line-top, .gold-line-bottom {
+    height: 4px; background: linear-gradient(to right, transparent, var(--oro-rico), transparent);
+    margin: 30px 0; opacity: 0.7;
+}
+
+/* Cuadro informativo para el código de vestimenta */
+.dress-code-card {
+    background: rgba(0, 35, 102, 0.03); padding: 20px; border-radius: 15px; margin: 30px 0;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+}
+
+/* Aviso importante sobre el color de vestimenta */
+.blue-notice { color: #c62828; font-weight: bold; font-size: 0.9rem; display: block; margin-top: 10px;}
+
+/* Espaciado general entre secciones de la invitación */
+section { margin: 40px 0; }
+
+
