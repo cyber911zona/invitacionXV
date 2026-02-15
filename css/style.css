@@ -101,18 +101,62 @@ body {
     to { transform: scale(1.05); box-shadow: 0 0 40px var(--oro-brillante); }
 }
 
-/* --- El Pergamino (Sin Cambios mayores) --- */
-/* Cuerpo de la invitación que se despliega; inicia oculto (max-height: 0) */
+/* --- PERGAMINO CON TEXTURA Y MARCO --- */
 .parchment {
-    background: linear-gradient(135deg, var(--blanco-seda) 0%, var(--azul-cristal) 100%);
-    padding: 0 40px; border-radius: 10px;
-    border-left: 10px solid var(--azul-imperial);
-    border-right: 10px solid var(--azul-imperial);
-    max-height: 0; opacity: 0; overflow: hidden;
+    /* Color marfil con textura de lino */
+    background-color: #fdfaf2; 
+    background-image: url("https://www.transparenttextures.com/patterns/linen.png");
+    
+    padding: 0 40px; 
+    border-radius: 4px;
+    
+    /* Bordes laterales estilo "Doble Línea" */
+    border-left: 12px double var(--azul-imperial);
+    border-right: 12px double var(--azul-imperial);
+    
+    max-height: 0; 
+    opacity: 0; 
+    overflow: hidden;
     transition: var(--transicion-lenta);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-    text-align: center; position: relative;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+    text-align: center; 
+    position: relative;
 }
+
+/* Marco dorado interno para mayor elegancia */
+.parchment::before {
+    content: '';
+    position: absolute;
+    top: 20px; bottom: 20px;
+    left: 20px; right: 20px;
+    border: 1px solid var(--oro-rico);
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Animación para que el texto suba suavemente */
+@keyframes revealUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Aplicamos el efecto a las secciones cuando la invitación se abre */
+.invitation-wrapper.open .intro-text,
+.invitation-wrapper.open .parents,
+.invitation-wrapper.open .princess-name,
+.invitation-wrapper.open .info-section,
+.invitation-wrapper.open .dress-code-card {
+    opacity: 0;
+    animation: revealUp 1.2s ease-out forwards;
+}
+
+/* Tiempos de espera para que aparezcan uno tras otro */
+.invitation-wrapper.open .intro-text { animation-delay: 0.6s; }
+.invitation-wrapper.open .parents { animation-delay: 0.9s; }
+.invitation-wrapper.open .princess-name { animation-delay: 1.2s; }
+.invitation-wrapper.open .info-section { animation-delay: 1.5s; }
+
+
 
 /* Estado cuando la invitación se abre: expande el contenido y lo hace visible */
 .invitation-wrapper.open .parchment {
@@ -127,12 +171,11 @@ body {
 /* --- Tipografía (Sin Cambios) --- */
 /* Nombre de la festejada con degradado dorado y sombra */
 .princess-name {
-    font-family: 'Great Vibes', cursive; font-size: 3.8rem;
-    background: linear-gradient(to right, var(--azul-imperial), var(--oro-rico), var(--azul-imperial));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin: 20px 0;
-    /* Añadí un filtro para que resalte más sobre el pergamino claro */
-    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+    font-family: 'Great Vibes', cursive; font-size: 4.5rem;
+    background: linear-gradient(to right, #b8860b, #fce2a3, #b8860b);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    display: block; margin: 15px 0; filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.2));
+    animation: floating 3s ease-in-out infinite;
 }
 
 /* Estilo para los nombres de los padres */
@@ -215,8 +258,23 @@ h2 {
 /* --- Detalles (Sin Cambios) --- */
 /* Líneas decorativas doradas con degradado hacia los lados */
 .gold-line-top, .gold-line-bottom {
-    height: 4px; background: linear-gradient(to right, transparent, var(--oro-rico), transparent);
-    margin: 30px 0; opacity: 0.7;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--oro-rico), transparent);
+    margin: 40px auto;
+    width: 70%;
+    position: relative;
+}
+
+/* Pequeño adorno en medio de la línea */
+.gold-line-top::after, .gold-line-bottom::after {
+    content: '✦';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--oro-rico);
+    background: #fdfaf2;
+    padding: 0 10px;
+    font-size: 1rem;
 }
 
 /* Cuadro informativo para el código de vestimenta */
@@ -232,3 +290,53 @@ h2 {
 section { margin: 40px 0; }
 
 
+/* --- SELLO DE CIERRE PEQUEÑO Y CENTRADO --- */
+
+.close-seal-wrapper {
+    display: flex;
+    justify-content: center; /* Centrado horizontal perfecto */
+    align-items: center;
+    margin: 30px auto 10px;  /* Margen para que no pegue con lo de arriba */
+    cursor: pointer;
+    width: fit-content;
+}
+
+.wax-seal.final-seal {
+    /* REDUCCIÓN DE TAMAÑO: 90px es ideal para un cierre elegante */
+    width: 77px; 
+    height: 77px;
+    
+    /* Mantenemos el estilo de joya azul y oro */
+    background: radial-gradient(circle, var(--azul-imperial), #001033);
+    border-radius: 50%;
+    border: 3px solid var(--oro-rico);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    animation: none; /* Sin pálpito constante */
+    transition: all 0.4s ease;
+}
+
+/* Símbolo decorativo más pequeño */
+.wax-seal.final-seal .seal-inner span {
+    font-size: 2rem; 
+    color: var(--oro-rico);
+    text-shadow: 0 0 5px rgba(252, 226, 163, 0.5);
+}
+
+/* Texto "CERRAR" ajustado al nuevo tamaño */
+.wax-seal.final-seal .seal-text {
+    color: white;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    margin-top: -5px;
+}
+
+/* Efecto al pasar el mouse */
+.close-seal-wrapper:hover .wax-seal.final-seal {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--oro-rico);
+    border-color: var(--oro-brillante);
+}
