@@ -7,19 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sealBtn && wrapper) {
         sealBtn.addEventListener('click', () => {
             wrapper.classList.add('open');
-            // Quitamos el scroll del cuerpo para que se enfoque en la invitación
             document.body.style.overflow = 'auto'; 
         });
     }
 
-    // Función para cerrar (Retroceso)
+    // Función para cerrar (Efecto limpio)
     if (closeBtn && wrapper) {
         closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflictos con otros clics
+            e.stopPropagation();
+            
+            // Eliminamos el scrollTo para evitar el salto visual
             wrapper.classList.remove('open');
             
-            // Opcional: regresa al inicio de la página al cerrar
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Bloqueamos el scroll brevemente para que la animación se vea limpia
+            document.body.style.overflow = 'hidden';
+            
+            // Devolvemos el scroll después de que termine la animación (1.8s)
+            setTimeout(() => {
+                window.scrollTo(0, 0); // Regresa al inicio instantáneamente una vez oculto
+                document.body.style.overflow = 'auto';
+            }, 1800); 
         });
     }
 });
