@@ -374,57 +374,59 @@ section {
     margin-top: -5px;
 }
 
-/* --- RESPONSIVIDAD PARA MÓVILES --- */
-@media (max-width: 600px) {
-    /* 1. Ajuste del Pase Digital */
-    .pass-container {
-        width: 95%; /* Que use casi todo el ancho */
-        max-width: 350px;
-    }
 
+
+/* --- AJUSTE ESPECÍFICO PARA IPHONE 13 MINI Y TELÉFONOS PEQUEÑOS --- */
+@media (max-width: 400px) {
+    /* 1. La Tarjeta (Pase Digital) */
     .pass-title {
-        font-size: 2.2rem; /* Reducimos el nombre para que no se salga del pase */
+        font-size: 1.8rem !important; /* Reducimos Jennifer Arlete para que no toque los bordes */
+    }
+    
+    .pass-subtitle {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px;
     }
 
-    /* 2. Ajuste del Pergamino */
+    .pass-info-row {
+        gap: 15px !important; /* Juntamos un poco Fecha y Lugar */
+    }
+
+    /* 2. El Pergamino (Invitación abierta) */
     .parchment {
-        width: 92%;
-        padding: 0 20px; /* Reducimos el espacio lateral (antes 50px) para dar más aire al texto */
+        padding: 0 15px !important; /* Reducimos el margen lateral al mínimo seguro */
+        width: 95%;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 20px; /* Espacio vertical ajustado */
+        padding: 60px 15px !important;
     }
 
-    /* 3. El Nombre (Tu mayor problema en el video/imagen) */
+    /* 3. El Nombre Principal (Jennifer Arlete Rosas Arellano) */
     .princess-name {
-        font-size: 2.2rem; /* Antes 3.8rem. Esto evita que se corte en los lados */
-        line-height: 1.1;
-        margin: 20px 0;
+        font-size: 1.8rem !important; /* Antes 3.8rem. Este es el cambio clave para que no se corte */
+        line-height: 1.1 !important;
+        margin: 15px 0 !important;
     }
 
-    /* 4. Textos Generales */
+    /* 4. Otros Textos */
     .intro-text {
-        font-size: 0.9rem;
-        line-height: 1.6;
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        max-width: 100% !important;
     }
 
     .parents {
-        font-size: 0.9rem; /* Nombres de los padres más compactos */
-        margin: 25px 0;
+        font-size: 0.8rem !important;
+        margin: 20px 0 !important;
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 0.9rem !important;
     }
 
-    /* 5. Secciones */
+    /* 5. Espacios entre secciones */
     section {
-        margin: 30px 0 50px 0; /* Separación equilibrada para celular */
-    }
-
-    .btn-glass-gold {
-        padding: 10px 20px;
-        font-size: 0.85rem;
+        margin: 20px 0 35px 0 !important;
     }
 }
