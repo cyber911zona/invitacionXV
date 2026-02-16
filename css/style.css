@@ -12,13 +12,20 @@
 }
 
 body {
-    margin: 0; display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; font-family: 'Montserrat', sans-serif;
+    margin: 0; 
+    display: flex; 
+    justify-content: center; 
+    /* CAMBIO: Usamos flex-start para que el scroll sea natural desde arriba */
+    align-items: flex-start; 
+    min-height: 100vh; 
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--azul-profundo-fondo);
     background-image: 
         radial-gradient(circle at 50% 40%, rgba(0, 78, 146, 0.4) 0%, transparent 60%),
         radial-gradient(circle at 80% 20%, rgba(191, 149, 63, 0.1) 0%, transparent 40%);
     overflow-x: hidden;
+    /* Añadimos un poco de aire arriba para que el pase no pegue al borde */
+    padding-top: 20px; 
 }
 
 /* --- FONDO ANIMADO --- */
@@ -180,6 +187,7 @@ body {
     transition: var(--transicion-lenta);
     text-align: center; 
     position: relative;
+    box-sizing: border-box;
     box-shadow: 0 30px 70px rgba(0,0,0,0.8);
     /* AÑADE ESTA LÍNEA para el borde sutil dorado */
     border: 1px solid rgba(191, 149, 63, 0.2); /* Borde sutil exterior */
@@ -406,6 +414,7 @@ section {
 
 
 /* --- BLOQUE FINAL CORREGIDO: SIN PARPADEO Y ANCHO PERFECTO --- */
+/* --- BLOQUE FINAL: MÓVIL (IMAGEN 23) + CERO PARPADEO --- */
 
 @media (max-width: 480px) {
     .pass-container {
@@ -413,7 +422,7 @@ section {
         max-width: 320px;
         aspect-ratio: 9 / 16; 
         max-height: none; 
-        /* Aumentamos el retraso a 1.7s para que espere al scroll y no parpadee */
+        /* RETRASO DE APARICIÓN: Espera 1.7s a que el pergamino cierre y el scroll termine */
         transition: opacity 0.5s ease 1.7s, transform 0.5s ease 1.7s, visibility 0s linear 1.7s;
     }
 
@@ -442,38 +451,35 @@ section {
 
     .pass-item:last-child { border-bottom: none; }
 
-    /* Ajuste de ancho para evitar el movimiento lateral en iPhone */
+    .pass-item span { font-size: 0.75rem !important; }
+    .pass-item p { font-size: 1.1rem !important; margin-top: 5px; }
+
+    /* AJUSTE DE ANCHO PARA IPHONE: Reducimos el padding y bordes dobles */
     .parchment {
-        width: 100% !important; /* Usamos el 100% pero con box-sizing */
-        box-sizing: border-box !important;
-        padding: 0 15px !important;
-        /* Reducimos los bordes dobles que causan el ancho extra */
-        border-left: 5px double var(--azul-imperial) !important;
-        border-right: 5px double var(--azul-imperial) !important;
+        padding: 0 20px !important;
+        width: 95% !important;
+        border-left: 6px double var(--azul-imperial) !important;
+        border-right: 6px double var(--azul-imperial) !important;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 15px !important;
+        padding: 60px 20px !important;
     }
 
     .princess-name {
-        font-size: 2.1rem !important; /* Un poco más pequeño para seguridad */
+        font-size: 2.1rem !important; 
         line-height: 1.1 !important;
+        margin: 20px 0 !important;
     }
 }
 
-/* --- ÍCONOS Y ESTRELLAS (FUERA DEL MEDIA QUERY) --- */
+/* --- CONTROL DE ÍCONOS Y ESTRELLAS (FUERA DEL @MEDIA) --- */
 .section-icon {
-    width: 50px !important; 
-    max-width: 50px;
-    margin: 0 auto 15px auto;
-    display: block;
+    width: 50px !important; max-width: 50px;
+    margin: 0 auto 15px auto; display: block; opacity: 0.8;
 }
 
-.dress-code-card .section-icon {
-    width: 70px !important; 
-    max-width: 70px;
-}
+.dress-code-card .section-icon { width: 70px !important; max-width: 70px; }
 
 .invitation-wrapper.open .section-icon {
     animation: revealUp 1.2s ease-out forwards;
