@@ -47,23 +47,23 @@ body {
     100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
 }
 
-/* --- NUEVA PRESENTACIÓN: PASE RECTANGULAR TRANSPARENTE --- */
+/* --- TARJETA ADAPTATIVA (PC y MÓVIL) --- */
 .pass-container {
-    position: absolute;
+    position: fixed; /* Mantiene la tarjeta centrada */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
     cursor: pointer;
     transition: all 0.8s ease;
-    /* Hacemos el contenedor más ancho para la forma rectangular */
-    width: 95%;
+    
+    /* FORMA PARA PC (Horizontal) */
+    width: 90%;
     max-width: 550px;
-    /* Limitamos la altura para que no se haga cuadrado */
-    max-height: 280px; 
-    aspect-ratio: 16/9; /* Intenta mantener proporción rectangular */
+    aspect-ratio: 16 / 9; 
+    height: auto;
+    max-height: 280px;
 }
-
 .glass-pass {
     /* MÁS TRANSPARENTE: Bajamos la opacidad del blanco a 0.02 */
     background: rgba(255, 255, 255, 0.02);
@@ -83,11 +83,11 @@ body {
     border: 1px solid rgba(191, 149, 63, 0.2);
     border-radius: 12px;
     /* MENOS ESPACIO VERTICAL: Clave para la forma rectangular */
-    padding: 15px 20px; 
+    padding: 40px 20px; /* Aumentamos el espacio interno */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra el contenido verticalmente */
+    justify-content: center;/* Centra el contenido verticalmente */
     height: 100%;
     box-sizing: border-box;
 }
@@ -377,57 +377,72 @@ section {
 }
 
 
-/* --- RESPONSIVIDAD PARA MÓVILES --- */
-@media (max-width: 600px) {
-    /* 1. Ajuste del Pase Digital */
+/* --- AJUSTE ESPECÍFICO PARA IPHONE 13 MINI Y TELÉFONOS PEQUEÑOS --- */
+@media (max-width: 480px) {
     .pass-container {
-        width: 95%; /* Que use casi todo el ancho */
-        max-width: 350px;
+        width: 85%;
+        max-width: 320px;
+        /* Esto crea el rectángulo alto y delgado que pediste */
+        aspect-ratio: 9 / 16; 
+        max-height: none; /* Quitamos el límite de altura de PC */
     }
 
+    /* 1. La Tarjeta (Pase Digital) */
     .pass-title {
-        font-size: 2.2rem; /* Reducimos el nombre para que no se salga del pase */
+        font-size: 1.8rem !important;
+        margin-top: 10px;
+    }
+    
+    .pass-subtitle {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px;
     }
 
-    /* 2. Ajuste del Pergamino */
+    .pass-info-row {
+        flex-direction: column; 
+        gap: 15px !important;
+        margin: 15px 0;
+        border-top: 1px solid rgba(191, 149, 63, 0.2);
+        border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    /* 2. El Pergamino (Invitación abierta) */
     .parchment {
-        width: 92%;
-        padding: 0 20px; /* Reducimos el espacio lateral (antes 50px) para dar más aire al texto */
+        padding: 0 15px !important; /* Reducimos el margen lateral al mínimo seguro */
+        width: 95%;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 20px; /* Espacio vertical ajustado */
+        padding: 60px 15px !important;
     }
 
-    /* 3. El Nombre (Tu mayor problema en el video/imagen) */
+    /* 3. El Nombre Principal (Jennifer Arlete Rosas Arellano) */
     .princess-name {
-        font-size: 2.2rem; /* Antes 3.8rem. Esto evita que se corte en los lados */
-        line-height: 1.1;
-        margin: 20px 0;
+        font-size: 1.8rem !important; /* Antes 3.8rem. Este es el cambio clave para que no se corte */
+        line-height: 1.1 !important;
+        margin: 15px 0 !important;
     }
 
-    /* 4. Textos Generales */
+    /* 4. Otros Textos */
     .intro-text {
-        font-size: 0.9rem;
-        line-height: 1.6;
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+        max-width: 100% !important;
     }
 
     .parents {
-        font-size: 0.9rem; /* Nombres de los padres más compactos */
-        margin: 25px 0;
+        font-size: 0.9rem !important;
+        margin: 20px 0 !important;
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 0.9rem !important;
     }
 
-    /* 5. Secciones */
+    /* 5. Espacios entre secciones */
     section {
-        margin: 30px 0 50px 0; /* Separación equilibrada para celular */
-    }
-
-    .btn-glass-gold {
-        padding: 10px 20px;
-        font-size: 0.85rem;
+        margin: 20px 0 35px 0 !important;
     }
 }
