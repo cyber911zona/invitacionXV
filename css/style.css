@@ -55,7 +55,7 @@ body {
     transform: translate(-50%, -50%);
     z-index: 100;
     cursor: pointer;
-    transition: all 0.8s ease;
+    transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s, visibility 0s linear 0.6s;
     
     /* FORMA PARA PC (Horizontal) */
     width: 90%;
@@ -232,6 +232,7 @@ body {
     transform: translate(-50%, -50%) scale(0.95);
     pointer-events: none;
     visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear;
 }
 
 
