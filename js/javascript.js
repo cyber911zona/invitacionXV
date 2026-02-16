@@ -11,18 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Función para cerrar (Sincronizada con el CSS)
+    // Función para cerrar (Sincronización perfecta)
     if (closeBtn && wrapper) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            
+            // Iniciamos el cierre del pergamino
             wrapper.classList.remove('open');
+            
+            // Bloqueamos el scroll para evitar parpadeos blancos
             document.body.style.overflow = 'hidden';
             
-            // Regresamos al inicio antes de que la tarjeta aparezca
+            // Regresamos al inicio a los 1.5 segundos (Justo antes de que aparezca la tarjeta)
             setTimeout(() => {
                 window.scrollTo({ top: 0, behavior: 'instant' }); 
             }, 1500); 
 
+            // Devolvemos el control del scroll al finalizar todo
             setTimeout(() => {
                 document.body.style.overflow = 'auto';
             }, 1800); 
