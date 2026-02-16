@@ -105,10 +105,11 @@ body {
 .pass-title {
     font-family: 'Great Vibes', cursive;
     color: #ffffff; /* Blanco puro */
-    font-size: 3rem; /* Un poco más pequeño para que quepa bien */
+    font-size: clamp(1.8rem, 10vw, 3rem); /* Un poco más pequeño para que quepa bien */
     margin: 0;
     /* CORRECCIÓN DE VISIBILIDAD: Sombra oscura para resaltar sobre el fondo */
     text-shadow: 0 2px 4px rgba(0,0,0,1); 
+    text-align: center;
 }
 
 .pass-subtitle {
@@ -194,7 +195,7 @@ body {
 }
 
 .invitation-wrapper.open .parchment { 
-    max-height: 3000px; 
+    max-height: 5000px; 
     opacity: 1; 
     padding: 80px 50px; }
 .invitation-wrapper.open .pass-container {
@@ -256,11 +257,12 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 10px 0;
+    margin: 15px 0;
     filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.2));
     animation: floating 3s ease-in-out infinite;
-    line-height: 1.3;
-    
+    line-height: 1.2;
+    display: block;
+    width: 100%;    
 }
 
 @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -375,9 +377,8 @@ section {
 }
 
 
-
 /* --- AJUSTE ESPECÍFICO PARA IPHONE 13 MINI Y TELÉFONOS PEQUEÑOS --- */
-@media (max-width: 400px) {
+@media (max-width: 380px) {
     /* 1. La Tarjeta (Pase Digital) */
     .pass-title {
         font-size: 1.8rem !important; /* Reducimos Jennifer Arlete para que no toque los bordes */
@@ -389,7 +390,7 @@ section {
     }
 
     .pass-info-row {
-        gap: 15px !important; /* Juntamos un poco Fecha y Lugar */
+        gap: 20px !important; /* Juntamos un poco Fecha y Lugar */
     }
 
     /* 2. El Pergamino (Invitación abierta) */
@@ -412,12 +413,12 @@ section {
     /* 4. Otros Textos */
     .intro-text {
         font-size: 0.85rem !important;
-        line-height: 1.5 !important;
+        line-height: 1.6 !important;
         max-width: 100% !important;
     }
 
     .parents {
-        font-size: 0.8rem !important;
+        font-size: 0.9rem !important;
         margin: 20px 0 !important;
     }
 
