@@ -405,7 +405,10 @@ section {
 }
 
 
-/* --- AJUSTE PARA CELULARES (REVISADO) --- */
+/* --- SUSTITUYE TODO DESDE AQUÍ HASTA EL FINAL DEL ARCHIVO --- */
+
+/* --- BLOQUE MAESTRO: MÓVIL (IMAGEN 23) + ÍCONOS + ESTRELLAS --- */
+
 @media (max-width: 480px) {
     .pass-container {
         width: 85%;
@@ -414,40 +417,53 @@ section {
         max-height: none; 
     }
 
-    /* 1. La Tarjeta (Pase Digital) */
     .pass-title {
         font-size: 1.8rem !important;
         margin-top: 10px;
     }
     
-    /* Mantenemos Fecha y Lugar en horizontal (no en lista) */
+    /* 2. DISEÑO IGUAL A IMAGEN 23 (Datos apilados con líneas) */
     .pass-info-row {
-        flex-direction: row; /* REGRESA A HORIZONTAL */
-        justify-content: space-around;
-        gap: 15px !important;
-        margin: 10px 0;
-        border-top: 1px solid rgba(191, 149, 63, 0.2);
-        border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-        padding: 15px 0;
+        flex-direction: column; 
+        align-items: center;
+        gap: 0 !important;      
+        margin: 20px 0;
+        padding: 5px 0;
+        border-top: 1px solid rgba(191, 149, 63, 0.3);
+        border-bottom: 1px solid rgba(191, 149, 63, 0.3);
         width: 100%;
     }
 
-    /* Tamaño de letra constante para fecha/lugar */
+    .pass-item {
+        width: 100%;
+        padding: 12px 0; 
+        text-align: center;
+        /* Línea divisoria entre datos */
+        border-bottom: 1px solid rgba(191, 149, 63, 0.15);
+    }
+
+    .pass-item:last-child {
+        border-bottom: none; 
+    }
+
+    .pass-item span {
+        font-size: 0.75rem !important; 
+        letter-spacing: 1px;
+    }
+
     .pass-item p {
-        font-size: 1.1rem !important; /* Mismo tamaño que al inicio */
+        font-size: 1.1rem !important; 
         margin-top: 5px;
     }
 
-    /* 2. El Nombre Principal (Como la imagen 2) */
     .princess-name {
-        font-size: 2.6rem !important; /* Aumentamos para que se distribuya en 2 o 3 líneas */
+        font-size: 2.2rem !important; 
         line-height: 1.1 !important;
         margin: 20px 0 !important;
         display: block;
         width: 100%;
     }
 
-    /* 3. El Pergamino */
     .parchment {
         padding: 0 20px !important;
         width: 95%;
@@ -458,23 +474,42 @@ section {
     }
 }
 
+/* --- CONTROL DE ÍCONOS --- */
 .section-icon {
-    width: 45px;      /* Tamaño sutil */
-    height: auto;
-    margin-bottom: 10px;
-    opacity: 0.8;     /* Un poco de transparencia para elegancia */
-    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1)); /* Sombra suave */
+    width: 50px !important; 
+    max-width: 50px;
+    margin: 0 auto 15px auto;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    opacity: 0.8;
 }
 
-/* Para que también aparezcan con el efecto de subida */
+.dress-code-card .section-icon {
+    width: 75px !important; 
+    max-width: 75px;
+    margin-bottom: 5px;
+}
+
 .invitation-wrapper.open .section-icon {
     animation: revealUp 1.2s ease-out forwards;
 }
 
-.dress-code-card .section-icon {
-    width: 85px; /* Aumentamos de 45px a 65px */
-    margin-bottom: 5px; /* Ajustamos el margen para que no empuje el título */
+/* --- EFECTO: ESTRELLAS FUGACES --- */
+.shooting-star {
+    position: fixed;
+    top: 0; left: 0;
+    width: 2px; height: 2px;
+    background: #fff;
+    opacity: 0;
+    z-index: -1;
+    animation: shooting 5s infinite;
+}
+
+.star-1 { top: 10%; left: 90%; animation-delay: 0s; }
+.star-2 { top: 30%; left: 100%; animation-delay: 2s; }
+.star-3 { top: 50%; left: 80%; animation-delay: 4s; }
+
+@keyframes shooting {
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 1; width: 2px; }
+    20% { transform: translate(-500px, 500px) rotate(-45deg); opacity: 0; width: 100px; }
+    100% { transform: translate(-500px, 500px) rotate(-45deg); opacity: 0; }
 }
