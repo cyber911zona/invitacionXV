@@ -377,57 +377,53 @@ section {
 }
 
 
-/* --- AJUSTE ESPECÍFICO PARA IPHONE 13 MINI Y TELÉFONOS PEQUEÑOS --- */
-@media (max-width: 380px) {
-    /* 1. La Tarjeta (Pase Digital) */
-    .pass-title {
-        font-size: 1.8rem !important; /* Reducimos Jennifer Arlete para que no toque los bordes */
+/* --- OPTIMIZACIÓN PARA CELULARES --- */
+@media (max-width: 480px) {
+    /* 1. Ajustamos el Pase Digital para que quepa bien en pantallas estrechas */
+    .pass-container {
+        width: 95%;
+        max-height: none; /* Permitimos que crezca si es necesario */
     }
-    
-    .pass-subtitle {
-        font-size: 0.7rem !important;
-        letter-spacing: 1px;
+
+    .pass-title {
+        font-size: 2.2rem; /* Reducimos el nombre para que no se corte */
     }
 
     .pass-info-row {
-        gap: 20px !important; /* Juntamos un poco Fecha y Lugar */
+        gap: 20px; /* Menos espacio horizontal entre Fecha y Lugar */
     }
 
-    /* 2. El Pergamino (Invitación abierta) */
+    /* 2. Ajustamos el Pergamino para ganar espacio interno */
     .parchment {
-        padding: 0 15px !important; /* Reducimos el margen lateral al mínimo seguro */
+        padding: 0 25px; /* Reducimos el margen lateral de 50px a 25px */
         width: 95%;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 15px !important;
+        padding: 80px 25px; /* Más aire arriba pero menos a los lados */
     }
 
-    /* 3. El Nombre Principal (Jennifer Arlete Rosas Arellano) */
+    /* 3. Reducimos tamaños de letra para que se lean mejor en el móvil */
     .princess-name {
-        font-size: 1.8rem !important; /* Antes 3.8rem. Este es el cambio clave para que no se corte */
-        line-height: 1.1 !important;
-        margin: 15px 0 !important;
-    }
-
-    /* 4. Otros Textos */
-    .intro-text {
-        font-size: 0.85rem !important;
-        line-height: 1.6 !important;
-        max-width: 100% !important;
+        font-size: 2.5rem; /* El nombre principal más compacto */
     }
 
     .parents {
-        font-size: 0.9rem !important;
-        margin: 20px 0 !important;
+        font-size: 1rem; /* Nombres de los padres un poco más pequeños */
+        margin: 30px 0;
+    }
+
+    .intro-text {
+        font-size: 0.9rem;
+        max-width: 95%; /* Que el texto use casi todo el ancho disponible */
     }
 
     h2 {
-        font-size: 0.9rem !important;
+        font-size: 1rem;
     }
 
-    /* 5. Espacios entre secciones */
+    /* 4. Ajustamos las secciones para que no ocupen tanto espacio vertical */
     section {
-        margin: 20px 0 35px 0 !important;
+        margin: 30px 0 40px 0;
     }
 }
