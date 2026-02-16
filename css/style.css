@@ -131,7 +131,7 @@ body {
 .pass-item span {
     display: block;
     color: var(--oro-brillante);
-    font-size: 0.55rem;
+    font-size: 0.85rem;   /*tamano de texto de fecha y hora*/ 
     letter-spacing: 2px;
     text-shadow: 0 1px 1px rgba(0,0,0,0.8);
 }
@@ -139,7 +139,7 @@ body {
 .pass-item p {
     color: #ffffff; /* Blanco puro */
     margin: 2px 0 0;
-    font-size: 0.9rem;
+    font-size: 0.95rem;   /*datos de fecha y hora tamaño de texto*/
     font-weight: 600;
     /* CORRECCIÓN DE VISIBILIDAD: Sombra oscura para resaltar */
     text-shadow: 0 1px 3px rgba(0,0,0,1);
@@ -280,17 +280,17 @@ body {
 
 .princess-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 3.8rem; /* Tamaño ajustado para elegancia */
+    font-size: clamp(2rem, 8vw, 3.8rem);  /* Tamaño ajustado para elegancia */
     background: linear-gradient(to right, #b8860b, #fce2a3, #b8860b);/* Dorado más brillante y notorio */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 15px 0;
+    margin: 10px 0;
     filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.2));
     animation: floating 3s ease-in-out infinite;
-    line-height: 1.2;
+    line-height: 1.1;
     display: block;
-    width: 100%;    
+    width: 100%;        
 }
 
 @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -424,8 +424,8 @@ section {
     .pass-info-row {
         flex-direction: row; /* REGRESA A HORIZONTAL */
         justify-content: space-around;
-        gap: 10px !important;
-        margin: 15px 0;
+        gap: 15px !important;
+        margin: 10px 0;
         border-top: 1px solid rgba(191, 149, 63, 0.2);
         border-bottom: 1px solid rgba(191, 149, 63, 0.2);
         padding: 15px 0;
@@ -434,7 +434,7 @@ section {
 
     /* Tamaño de letra constante para fecha/lugar */
     .pass-item p {
-        font-size: 0.85rem !important; /* Mismo tamaño que al inicio */
+        font-size: 1.1rem !important; /* Mismo tamaño que al inicio */
         margin-top: 5px;
     }
 
@@ -449,11 +449,32 @@ section {
 
     /* 3. El Pergamino */
     .parchment {
-        padding: 0 15px !important;
+        padding: 0 20px !important;
         width: 95%;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 15px !important;
+        padding: 60px 20px !important;
     }
+}
+
+.section-icon {
+    width: 45px;      /* Tamaño sutil */
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0.8;     /* Un poco de transparencia para elegancia */
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1)); /* Sombra suave */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Para que también aparezcan con el efecto de subida */
+.invitation-wrapper.open .section-icon {
+    animation: revealUp 1.2s ease-out forwards;
+}
+
+.dress-code-card .section-icon {
+    width: 85px; /* Aumentamos de 45px a 65px */
+    margin-bottom: 5px; /* Ajustamos el margen para que no empuje el título */
 }
