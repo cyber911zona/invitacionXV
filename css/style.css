@@ -377,14 +377,13 @@ section {
 }
 
 
-/* --- AJUSTE ESPECÍFICO PARA IPHONE 13 MINI Y TELÉFONOS PEQUEÑOS --- */
+/* --- AJUSTE PARA CELULARES (REVISADO) --- */
 @media (max-width: 480px) {
     .pass-container {
         width: 85%;
         max-width: 320px;
-        /* Esto crea el rectángulo alto y delgado que pediste */
         aspect-ratio: 9 / 16; 
-        max-height: none; /* Quitamos el límite de altura de PC */
+        max-height: none; 
     }
 
     /* 1. La Tarjeta (Pase Digital) */
@@ -393,14 +392,11 @@ section {
         margin-top: 10px;
     }
     
-    .pass-subtitle {
-        font-size: 0.7rem !important;
-        letter-spacing: 1px;
-    }
-
+    /* Mantenemos Fecha y Lugar en horizontal (no en lista) */
     .pass-info-row {
-        flex-direction: column; 
-        gap: 15px !important;
+        flex-direction: row; /* REGRESA A HORIZONTAL */
+        justify-content: space-around;
+        gap: 10px !important;
         margin: 15px 0;
         border-top: 1px solid rgba(191, 149, 63, 0.2);
         border-bottom: 1px solid rgba(191, 149, 63, 0.2);
@@ -408,41 +404,28 @@ section {
         width: 100%;
     }
 
-    /* 2. El Pergamino (Invitación abierta) */
+    /* Tamaño de letra constante para fecha/lugar */
+    .pass-item p {
+        font-size: 0.85rem !important; /* Mismo tamaño que al inicio */
+        margin-top: 5px;
+    }
+
+    /* 2. El Nombre Principal (Como la imagen 2) */
+    .princess-name {
+        font-size: 2.6rem !important; /* Aumentamos para que se distribuya en 2 o 3 líneas */
+        line-height: 1.1 !important;
+        margin: 20px 0 !important;
+        display: block;
+        width: 100%;
+    }
+
+    /* 3. El Pergamino */
     .parchment {
-        padding: 0 15px !important; /* Reducimos el margen lateral al mínimo seguro */
+        padding: 0 15px !important;
         width: 95%;
     }
 
     .invitation-wrapper.open .parchment {
         padding: 60px 15px !important;
-    }
-
-    /* 3. El Nombre Principal (Jennifer Arlete Rosas Arellano) */
-    .princess-name {
-        font-size: 1.8rem !important; /* Antes 3.8rem. Este es el cambio clave para que no se corte */
-        line-height: 1.1 !important;
-        margin: 15px 0 !important;
-    }
-
-    /* 4. Otros Textos */
-    .intro-text {
-        font-size: 0.85rem !important;
-        line-height: 1.6 !important;
-        max-width: 100% !important;
-    }
-
-    .parents {
-        font-size: 0.9rem !important;
-        margin: 20px 0 !important;
-    }
-
-    h2 {
-        font-size: 0.9rem !important;
-    }
-
-    /* 5. Espacios entre secciones */
-    section {
-        margin: 20px 0 35px 0 !important;
     }
 }
