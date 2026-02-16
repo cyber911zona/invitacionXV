@@ -153,15 +153,27 @@ body {
 }
 
 .pass-action-btn {
-    background: linear-gradient(to right, #b8860b, #fce2a3, #b8860b);
+    background: linear-gradient(145deg, #fce2a3, #b8860b); /* Degradado con ángulo para relieve */
     color: var(--azul-imperial);
-    padding: 10px 25px;
+    padding: 12px 28px;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    margin-top: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin-top: 15px;
+    
+    /* EFECTO RELIEVE: Sombra externa fuerte y sombra interna de luz */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 
+                inset 0 2px 2px rgba(255, 255, 255, 0.5);
+    
+    border: 1px solid rgba(191, 149, 63, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto al tocar o pasar el mouse: se eleva más */
+.pass-action-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes glow { 
@@ -329,13 +341,35 @@ h2 {
 }
 
 .btn-glass-gold {
-    text-decoration: none; display: inline-block; padding: 12px 30px; margin-top: 15px;
-    background: rgba(0, 35, 102, 0.05); backdrop-filter: blur(10px);
-    border: 2px solid var(--oro-rico); border-radius: 50px; color: var(--azul-imperial);
-    font-weight: 600; transition: 0.4s;
+    text-decoration: none; 
+    display: inline-block; 
+    padding: 12px 30px; 
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* BORDE DORADO CON RELIEVE */
+    border: 2px solid var(--oro-rico); 
+    border-radius: 50px; 
+    color: var(--azul-imperial);
+    font-weight: 600;
+    
+    /* SOMBRA FLOTANTE */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px rgba(191, 149, 63, 0.2);
+    
+    transition: all 0.4s ease;
 }
 
-.btn-glass-gold:hover { background: var(--azul-imperial); color: var(--oro-brillante); }
+.btn-glass-gold:hover { 
+    background: var(--azul-imperial); 
+    color: var(--oro-brillante); 
+    transform: translateY(-5px); /* Se eleva al flotar */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--oro-brillante);
+}
+
 .confirm { background: var(--azul-imperial); color: var(--oro-brillante); }
 
 .gold-line-top, .gold-line-bottom {
@@ -381,35 +415,56 @@ section {
 
 /* SELLO DE CIERRE */
 .close-seal-wrapper { display: flex; justify-content: center; align-items: center; margin: 30px auto 10px; cursor: pointer; }
+
+/* SELLO DE CIERRE CON RELIEVE */
 .wax-seal.final-seal { 
     width: 80px; 
     height: 80px; 
     border: 3px solid var(--oro-rico); 
-    background: radial-gradient(circle, var(--azul-imperial), #001033); 
+    background: radial-gradient(circle at 30% 30%, #002366, #000a1a); /* Degradado para simular volumen */
     border-radius: 50%; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    gap: 10px; /* Esto separará verticalmente el 'XV' del 'CERRAR' */
+    gap: 10px;
+
+    /* EFECTO FLOTANTE: Sombra externa para profundidad e interna para el borde */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4),
+                inset 0 0 15px rgba(191, 149, 63, 0.3);
+    
+    /* Preparación para el movimiento */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* EFECTO AL PASAR EL MOUSE O TOCAR: Se eleva y brilla el borde */
+.wax-seal.final-seal:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(191, 149, 63, 0.4);
+    border-color: var(--oro-brillante);
 }
 
 /* --- COLOR DE LETRAS EN EL SELLO DE CERRAR --- */
 
 /* La "XV" en dorado */
+/* La "XV" con sombra de profundidad */
 .wax-seal.final-seal .seal-inner span {
     color: var(--oro-brillante);
     font-size: 1.4rem;
     font-family: 'Cinzel Decorative', serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra interna */
 }
 
-/* La palabra "CERRAR" en blanco */
+/* La palabra "CERRAR" */
 .wax-seal.final-seal .seal-text {
     color: #ffffff;
     font-size: 0.6rem;
     font-weight: bold;
     letter-spacing: 2px;
     margin-top: -5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 
