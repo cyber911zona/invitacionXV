@@ -377,53 +377,57 @@ section {
 }
 
 
-/* --- OPTIMIZACIÓN PARA CELULARES --- */
-@media (max-width: 480px) {
-    /* 1. Ajustamos el Pase Digital para que quepa bien en pantallas estrechas */
+/* --- RESPONSIVIDAD PARA MÓVILES --- */
+@media (max-width: 600px) {
+    /* 1. Ajuste del Pase Digital */
     .pass-container {
-        width: 95%;
-        max-height: none; /* Permitimos que crezca si es necesario */
+        width: 95%; /* Que use casi todo el ancho */
+        max-width: 350px;
     }
 
     .pass-title {
-        font-size: 2.2rem; /* Reducimos el nombre para que no se corte */
+        font-size: 2.2rem; /* Reducimos el nombre para que no se salga del pase */
     }
 
-    .pass-info-row {
-        gap: 20px; /* Menos espacio horizontal entre Fecha y Lugar */
-    }
-
-    /* 2. Ajustamos el Pergamino para ganar espacio interno */
+    /* 2. Ajuste del Pergamino */
     .parchment {
-        padding: 0 25px; /* Reducimos el margen lateral de 50px a 25px */
-        width: 95%;
+        width: 92%;
+        padding: 0 20px; /* Reducimos el espacio lateral (antes 50px) para dar más aire al texto */
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 80px 25px; /* Más aire arriba pero menos a los lados */
+        padding: 60px 20px; /* Espacio vertical ajustado */
     }
 
-    /* 3. Reducimos tamaños de letra para que se lean mejor en el móvil */
+    /* 3. El Nombre (Tu mayor problema en el video/imagen) */
     .princess-name {
-        font-size: 2.5rem; /* El nombre principal más compacto */
+        font-size: 2.2rem; /* Antes 3.8rem. Esto evita que se corte en los lados */
+        line-height: 1.1;
+        margin: 20px 0;
+    }
+
+    /* 4. Textos Generales */
+    .intro-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     .parents {
-        font-size: 1rem; /* Nombres de los padres un poco más pequeños */
-        margin: 30px 0;
-    }
-
-    .intro-text {
-        font-size: 0.9rem;
-        max-width: 95%; /* Que el texto use casi todo el ancho disponible */
+        font-size: 0.9rem; /* Nombres de los padres más compactos */
+        margin: 25px 0;
     }
 
     h2 {
         font-size: 1rem;
     }
 
-    /* 4. Ajustamos las secciones para que no ocupen tanto espacio vertical */
+    /* 5. Secciones */
     section {
-        margin: 30px 0 40px 0;
+        margin: 30px 0 50px 0; /* Separación equilibrada para celular */
+    }
+
+    .btn-glass-gold {
+        padding: 10px 20px;
+        font-size: 0.85rem;
     }
 }
