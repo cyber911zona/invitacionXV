@@ -405,9 +405,7 @@ section {
 }
 
 
-/* --- SUSTITUYE TODO DESDE AQUÍ HASTA EL FINAL DEL ARCHIVO --- */
-
-/* --- BLOQUE MAESTRO: MÓVIL (IMAGEN 23) + ÍCONOS + ESTRELLAS --- */
+/* --- BLOQUE FINAL CORREGIDO: SIN PARPADEO Y ANCHO PERFECTO --- */
 
 @media (max-width: 480px) {
     .pass-container {
@@ -415,6 +413,8 @@ section {
         max-width: 320px;
         aspect-ratio: 9 / 16; 
         max-height: none; 
+        /* Aumentamos el retraso a 1.7s para que espere al scroll y no parpadee */
+        transition: opacity 0.5s ease 1.7s, transform 0.5s ease 1.7s, visibility 0s linear 1.7s;
     }
 
     .pass-title {
@@ -422,7 +422,6 @@ section {
         margin-top: 10px;
     }
     
-    /* 2. DISEÑO IGUAL A IMAGEN 23 (Datos apilados con líneas) */
     .pass-info-row {
         flex-direction: column; 
         align-items: center;
@@ -438,78 +437,57 @@ section {
         width: 100%;
         padding: 12px 0; 
         text-align: center;
-        /* Línea divisoria entre datos */
         border-bottom: 1px solid rgba(191, 149, 63, 0.15);
     }
 
-    .pass-item:last-child {
-        border-bottom: none; 
-    }
+    .pass-item:last-child { border-bottom: none; }
 
-    .pass-item span {
-        font-size: 0.75rem !important; 
-        letter-spacing: 1px;
-    }
-
-    .pass-item p {
-        font-size: 1.1rem !important; 
-        margin-top: 5px;
-    }
-
-    .princess-name {
-        font-size: 2.2rem !important; 
-        line-height: 1.1 !important;
-        margin: 20px 0 !important;
-        display: block;
-        width: 100%;
-    }
-
+    /* Ajuste de ancho para evitar el movimiento lateral en iPhone */
     .parchment {
-        padding: 0 20px !important;
-        width: 95%;
+        width: 100% !important; /* Usamos el 100% pero con box-sizing */
+        box-sizing: border-box !important;
+        padding: 0 15px !important;
+        /* Reducimos los bordes dobles que causan el ancho extra */
+        border-left: 5px double var(--azul-imperial) !important;
+        border-right: 5px double var(--azul-imperial) !important;
     }
 
     .invitation-wrapper.open .parchment {
-        padding: 60px 20px !important;
+        padding: 60px 15px !important;
+    }
+
+    .princess-name {
+        font-size: 2.1rem !important; /* Un poco más pequeño para seguridad */
+        line-height: 1.1 !important;
     }
 }
 
-/* --- CONTROL DE ÍCONOS --- */
+/* --- ÍCONOS Y ESTRELLAS (FUERA DEL MEDIA QUERY) --- */
 .section-icon {
     width: 50px !important; 
     max-width: 50px;
     margin: 0 auto 15px auto;
     display: block;
-    opacity: 0.8;
 }
 
 .dress-code-card .section-icon {
-    width: 75px !important; 
-    max-width: 75px;
-    margin-bottom: 5px;
+    width: 70px !important; 
+    max-width: 70px;
 }
 
 .invitation-wrapper.open .section-icon {
     animation: revealUp 1.2s ease-out forwards;
 }
 
-/* --- EFECTO: ESTRELLAS FUGACES --- */
 .shooting-star {
-    position: fixed;
-    top: 0; left: 0;
-    width: 2px; height: 2px;
-    background: #fff;
-    opacity: 0;
-    z-index: -1;
-    animation: shooting 5s infinite;
+    position: fixed; top: 0; left: 0; width: 2px; height: 2px;
+    background: #fff; opacity: 0; z-index: -1; animation: shooting 5s infinite;
 }
-
-.star-1 { top: 10%; left: 90%; animation-delay: 0s; }
-.star-2 { top: 30%; left: 100%; animation-delay: 2s; }
-.star-3 { top: 50%; left: 80%; animation-delay: 4s; }
+.star-1 { top: 10%; left: 80%; animation-delay: 0s; }
+.star-2 { top: 30%; left: 90%; animation-delay: 2s; }
 
 @keyframes shooting {
-    0% { transform: translate(0, 0) rotate(-45deg); opacity: 1; width: 2px; }
-    20% { transform: translate(-500px, 500px) rotate(-45deg); opacity: 0; width: 100px; }
-    100% { transform: translate(-500px, 500px) rotate(-45deg); opacity: 0; }
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 1; }
+    20% { transform: translate(-400px, 400px) rotate(-45deg); opacity: 0; }
+    100% { opacity: 0; }
 }
