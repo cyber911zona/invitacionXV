@@ -11,20 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Función para cerrar (Efecto limpio)
+    // Función para cerrar (Efecto ultra limpio)
     if (closeBtn && wrapper) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             
-            // Eliminamos el scrollTo para evitar el salto visual
+            // 1. Iniciamos el cierre visual
             wrapper.classList.remove('open');
             
-            // Bloqueamos el scroll brevemente para que la animación se vea limpia
+            // 2. Bloqueamos el scroll para que no haya saltos
             document.body.style.overflow = 'hidden';
             
-            // Devolvemos el scroll después de que termine la animación (1.8s)
+            // 3. Regresamos al inicio un poco ANTES de que termine la animación (1.6s)
+            // Esto elimina el parpadeo blanco que ves arriba
             setTimeout(() => {
-                window.scrollTo(0, 0); // Regresa al inicio instantáneamente una vez oculto
+                window.scrollTo({ top: 0, behavior: 'instant' }); 
+            }, 1600); 
+
+            // 4. Devolvemos el control del scroll al finalizar (1.8s)
+            setTimeout(() => {
                 document.body.style.overflow = 'auto';
             }, 1800); 
         });
